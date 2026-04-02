@@ -1,0 +1,67 @@
+.app-shell {
+  width: min(680px, calc(100vw - 2rem));
+  background: #ffffff;
+  border: 1px solid #d7dde3;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(35, 48, 63, 0.14);
+  padding: 1.6rem;
+}
+
+h1 {
+  margin: 0;
+  color: #102031;
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  color: #46586a;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.62rem 1rem;
+  background: #0f4f8a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0b416f;
+}
+
+ul {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #d8dee6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+li {
+  background: #fdfefe;
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid #e8edf2;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.status {
+  margin: 0.8rem 0 0;
+  color: #596b7b;
+}
+
+.hint {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+}
+
+.hint a {
+  color: #0f4f8a;
+}
