@@ -109,7 +109,8 @@
   gap: 0.7rem;
 }
 
-.composer-input {
+.composer-input,
+.edit-input {
   width: 100%;
   border: 1px solid rgba(18, 52, 74, 0.2);
   background: rgba(255, 255, 255, 0.93);
@@ -119,39 +120,69 @@
   color: var(--ink-900);
 }
 
-.composer-input::placeholder {
+.composer-input::placeholder,
+.edit-input::placeholder {
   color: #6b8093;
 }
 
-.composer-input:focus {
+.composer-input:focus,
+.edit-input:focus {
   outline: none;
   border-color: rgba(8, 145, 114, 0.56);
   box-shadow: 0 0 0 4px rgba(8, 145, 114, 0.12);
 }
 
-.primary-btn {
+.primary-btn,
+.subtle-btn,
+.danger-btn {
   border: none;
   border-radius: 12px;
   padding: 0.72rem 1rem;
-  min-width: 118px;
-  background: linear-gradient(120deg, #0f6f8f, #0d8369);
-  color: white;
+  min-width: 96px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
-.primary-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(12, 106, 94, 0.25);
-  filter: saturate(1.07);
+.primary-btn {
+  min-width: 118px;
+  background: linear-gradient(120deg, #0f6f8f, #0d8369);
+  color: #fff;
 }
 
-.primary-btn:active:not(:disabled) {
+.primary-btn.compact {
+  min-width: 84px;
+  padding: 0.58rem 0.8rem;
+}
+
+.subtle-btn {
+  background: rgba(18, 52, 74, 0.1);
+  color: var(--ink-900);
+  min-width: 82px;
+}
+
+.danger-btn {
+  background: rgba(177, 42, 36, 0.12);
+  color: #8f231f;
+  min-width: 82px;
+}
+
+.primary-btn:hover:not(:disabled),
+.subtle-btn:hover:not(:disabled),
+.danger-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(19, 43, 57, 0.16);
+}
+
+.primary-btn:active:not(:disabled),
+.subtle-btn:active:not(:disabled),
+.danger-btn:active:not(:disabled) {
   transform: translateY(0);
 }
 
-.primary-btn:disabled {
+.primary-btn:disabled,
+.subtle-btn:disabled,
+.danger-btn:disabled {
   cursor: not-allowed;
   opacity: 0.64;
 }
@@ -181,9 +212,22 @@
   color: var(--ink-900);
 }
 
+.board-meta {
+  display: grid;
+  justify-items: end;
+  gap: 0.1rem;
+}
+
 .board-count {
   color: var(--ink-700);
   font-size: 0.88rem;
+}
+
+.board-sync {
+  color: var(--ink-600);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .todo-list {
@@ -198,22 +242,43 @@
 
 .todo-item {
   display: grid;
-  gap: 0.34rem;
-  padding: 0.88rem 0.95rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.84rem 0.95rem;
   border-bottom: 1px solid rgba(19, 43, 57, 0.1);
+  transition: background-color 180ms ease;
+}
+
+.todo-item:hover {
+  background: rgba(224, 247, 241, 0.38);
 }
 
 .todo-item:last-child {
   border-bottom: none;
 }
 
+.todo-main {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
 .todo-content {
+  margin: 0;
   color: var(--ink-900);
+  overflow-wrap: anywhere;
 }
 
 .todo-time {
   color: var(--ink-600);
   font-size: 0.82rem;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.44rem;
+  align-items: center;
 }
 
 .empty-state {
@@ -258,39 +323,14 @@
   color: #0f6f8f;
   font-weight: 600;
   text-decoration-thickness: 1.5px;
-  text-underline-offset: 2px;
-}
-
-@media (max-width: 640px) {
-  .app {
-    gap: 0.84rem;
-  }
-
-  .composer-row {
-    grid-template-columns: 1fr;
-  }
-
-  .primary-btn {
-    width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .app,
-  .panel {
-    animation: none;
-  }
-
-  .primary-btn {
-    transition: none;
-  }
 }
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -302,8 +342,38 @@
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .composer-row {
+    grid-template-columns: 1fr;
+  }
+
+  .board-head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .board-meta {
+    justify-items: start;
+  }
+
+  .todo-item {
+    grid-template-columns: 1fr;
+  }
+
+  .todo-actions {
+    justify-content: flex-start;
+  }
+
+  .primary-btn,
+  .subtle-btn,
+  .danger-btn {
+    min-width: 0;
   }
 }
